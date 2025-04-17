@@ -1,0 +1,387 @@
+[
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.AlertsController",
+    "Method": "GetAlerts",
+    "RelativePath": "api/alerts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.AlertsController",
+    "Method": "CreateAlert",
+    "RelativePath": "api/alerts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createDto",
+        "Type": "FishCareSystem.API.DTOs.CreateAlertDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.AlertsController",
+    "Method": "GetAlert",
+    "RelativePath": "api/alerts/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.AlertsController",
+    "Method": "DeleteAlert",
+    "RelativePath": "api/alerts/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "FishCareSystem.API.DTOs.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerDto",
+        "Type": "FishCareSystem.API.DTOs.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.DevicesController",
+    "Method": "GetDevices",
+    "RelativePath": "api/devices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.DevicesController",
+    "Method": "CreateDevice",
+    "RelativePath": "api/devices",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createDto",
+        "Type": "FishCareSystem.API.DTOs.CreateDeviceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.DevicesController",
+    "Method": "GetDevice",
+    "RelativePath": "api/devices/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.DevicesController",
+    "Method": "DeleteDevice",
+    "RelativePath": "api/devices/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.DevicesController",
+    "Method": "UpdateDevice",
+    "RelativePath": "api/devices/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateDto",
+        "Type": "FishCareSystem.API.DTOs.UpdateDeviceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.FarmsController",
+    "Method": "GetFarms",
+    "RelativePath": "api/farms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.FarmsController",
+    "Method": "CreateFarm",
+    "RelativePath": "api/farms",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createFarmDto",
+        "Type": "FishCareSystem.API.DTOs.CreateFarmDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.FarmsController",
+    "Method": "GetFarm",
+    "RelativePath": "api/farms/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.FarmsController",
+    "Method": "UpdateFarm",
+    "RelativePath": "api/farms/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateFarmDto",
+        "Type": "FishCareSystem.API.DTOs.CreateFarmDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.FarmsController",
+    "Method": "DeleteFarm",
+    "RelativePath": "api/farms/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.SensorReadingsController",
+    "Method": "GetSensorReadings",
+    "RelativePath": "api/sensor-readings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.SensorReadingsController",
+    "Method": "CreateSensorReading",
+    "RelativePath": "api/sensor-readings",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createDto",
+        "Type": "FishCareSystem.API.DTOs.CreateSensorReadingDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.SensorReadingsController",
+    "Method": "GetSensorReading",
+    "RelativePath": "api/sensor-readings/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.SensorReadingsController",
+    "Method": "DeleteSensorReading",
+    "RelativePath": "api/sensor-readings/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.TanksController",
+    "Method": "GetTanks",
+    "RelativePath": "api/tanks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.TanksController",
+    "Method": "CreateTank",
+    "RelativePath": "api/tanks",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createTankDto",
+        "Type": "FishCareSystem.API.DTOs.CreateTankDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.TanksController",
+    "Method": "GetTank",
+    "RelativePath": "api/tanks/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.TanksController",
+    "Method": "UpdateTank",
+    "RelativePath": "api/tanks/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateTankDto",
+        "Type": "FishCareSystem.API.DTOs.CreateTankDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.TanksController",
+    "Method": "DeleteTank",
+    "RelativePath": "api/tanks/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

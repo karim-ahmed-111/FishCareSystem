@@ -1,0 +1,164 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Graduation Project\\FishCareAndManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\controllers\\sensorreadingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\controllers\\sensorreadingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\controllers\\alertscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\controllers\\alertscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\controllers\\devicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\controllers\\devicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\controllers\\tankscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\controllers\\tankscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\controllers\\farmscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\controllers\\farmscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\dtos\\authdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\dtos\\authdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Program.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Program.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Program.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAswCcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T12:50:53.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AlertsController.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\AlertsController.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Controllers\\AlertsController.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\AlertsController.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Controllers\\AlertsController.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAkwD4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T12:36:16.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SensorReadingsController.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\SensorReadingsController.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Controllers\\SensorReadingsController.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\SensorReadingsController.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Controllers\\SensorReadingsController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAUwBsAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T12:30:58.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DevicesController.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\DevicesController.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Controllers\\DevicesController.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\DevicesController.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Controllers\\DevicesController.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAUwFEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T12:22:59.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TanksController.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\TanksController.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Controllers\\TanksController.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\TanksController.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Controllers\\TanksController.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAACgAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T12:18:15.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FarmsController.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\FarmsController.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Controllers\\FarmsController.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\Controllers\\FarmsController.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Controllers\\FarmsController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAUwC0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T12:12:16.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthDto.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\DTOs\\AuthDto.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\DTOs\\AuthDto.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\DTOs\\AuthDto.cs",
+              "RelativeToolTip": "FishCareSystem.API\\DTOs\\AuthDto.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAIAzwCEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T12:03:15.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\appsettings.json",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\appsettings.json",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem.API\\appsettings.json",
+              "RelativeToolTip": "FishCareSystem.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-17T12:02:02.523Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
