@@ -34,6 +34,7 @@ namespace FishCareSystem.API.Controllers
                 .ToListAsync();
             return Ok(farms);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFarm(int id)
         {
@@ -50,6 +51,7 @@ namespace FishCareSystem.API.Controllers
             return Ok(farms);
         }
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreateFarm([FromBody] CreateFarmDto createFarmDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -72,6 +74,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> UpdateFarm(int id, [FromBody] CreateFarmDto updateFarmDto)
         {
             var farm = await _context.Farms.FindAsync(id);
@@ -88,6 +91,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> DeleteFarm(int id)
         {
             var farm = await _context.Farms.FindAsync(id);
@@ -101,5 +105,7 @@ namespace FishCareSystem.API.Controllers
 
             return NoContent();
         }
+        
+        
     }
 }

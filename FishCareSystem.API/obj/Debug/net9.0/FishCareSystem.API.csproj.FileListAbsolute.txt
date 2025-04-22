@@ -173,3 +173,9 @@ D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\n
 D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\obj\Debug\net9.0\FishCareSystem.API.sourcelink.json
+D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\MQTTnet.dll
+D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\FishCareSystemAI\venv\Lib\site-packages\scipy\stats\tests\data\studentized_range_mpmath_ref.json
+D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\Newtonsoft.Json.dll
+D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\SendGrid.dll
+D:\Graduation Project\FishCareAndManagementSystem\FishCareSystem.API\bin\Debug\net9.0\StarkbankEcdsa.dll

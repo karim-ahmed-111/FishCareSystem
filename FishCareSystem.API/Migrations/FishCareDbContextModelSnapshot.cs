@@ -181,6 +181,35 @@ namespace FishCareSystem.API.Migrations
                     b.ToTable("Farms");
                 });
 
+            modelBuilder.Entity("FishCareSystem.API.Models.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
+                });
+
             modelBuilder.Entity("FishCareSystem.API.Models.SensorReading", b =>
                 {
                     b.Property<int>("Id")
@@ -408,6 +437,17 @@ namespace FishCareSystem.API.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("FishCareSystem.API.Models.RefreshToken", b =>
+                {
+                    b.HasOne("FishCareSystem.API.Models.ApplicationUser", "User")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FishCareSystem.API.Models.SensorReading", b =>
                 {
                     b.HasOne("FishCareSystem.API.Models.Tank", "Tank")
@@ -479,6 +519,11 @@ namespace FishCareSystem.API.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FishCareSystem.API.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("RefreshTokens");
                 });
 
             modelBuilder.Entity("FishCareSystem.API.Models.Farm", b =>

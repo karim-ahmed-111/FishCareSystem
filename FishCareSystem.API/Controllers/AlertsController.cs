@@ -34,6 +34,8 @@ namespace FishCareSystem.API.Controllers
                 .ToListAsync();
             return Ok(alerts);
         }
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAlert(int id)
         {
@@ -54,20 +56,8 @@ namespace FishCareSystem.API.Controllers
             }
             return Ok(alert);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAlert(int id)
-        {
-            var alert = await _context.Alerts.FindAsync(id);
-            if (alert == null)
-            {
-                return NotFound();
-            }
-            _context.Alerts.Remove(alert);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreateAlert([FromBody] CreateAlertDto createDto)
         {
             var tank = await _context.Tanks.FindAsync(createDto.TankId);
@@ -96,5 +86,21 @@ namespace FishCareSystem.API.Controllers
                 CreatedAt = alert.CreatedAt
             });
         }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAlert(int id)
+        {
+            var alert = await _context.Alerts.FindAsync(id);
+            if (alert == null)
+            {
+                return NotFound();
+            }
+            _context.Alerts.Remove(alert);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        
     }
 }

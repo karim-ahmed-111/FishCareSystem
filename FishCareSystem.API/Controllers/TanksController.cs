@@ -51,6 +51,7 @@ namespace FishCareSystem.API.Controllers
             return Ok(tanks);
         }
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreateTank([FromBody] CreateTankDto createTankDto)
         {
             var farm = await _context.Farms.FindAsync(createTankDto.FarmId);
@@ -81,6 +82,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> UpdateTank(int id, [FromBody] CreateTankDto updateTankDto)
         {
             var tank = await _context.Tanks.FindAsync(id);
@@ -105,6 +107,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> DeleteTank(int id)
         {
             var tank = await _context.Tanks.FindAsync(id);
@@ -120,3 +123,4 @@ namespace FishCareSystem.API.Controllers
         }
     }
 }
+

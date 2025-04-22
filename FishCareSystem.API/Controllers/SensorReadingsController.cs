@@ -1,9 +1,14 @@
-﻿using FishCareSystem.API.Data;
+﻿using FishCareSystem.API.AI;
+using FishCareSystem.API.Data;
 using FishCareSystem.API.DTOs;
 using FishCareSystem.API.Models;
+using FishCareSystem.API.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace FishCareSystem.API.Controllers
 {
@@ -13,10 +18,26 @@ namespace FishCareSystem.API.Controllers
     public class SensorReadingsController : ControllerBase
     {
         private readonly FishCareDbContext _context;
+        private readonly HttpClient _httpClient;
+        private readonly IMqttClientService _mqttService;
+        private readonly ILogger<SensorReadingsController> _logger;
 
-        public SensorReadingsController(FishCareDbContext context)
+        public SensorReadingsController(
+            FishCareDbContext context,
+            HttpClient httpClient,
+            IMqttClientService mqttService,
+            IConfiguration configuration,
+            ILogger<SensorReadingsController> logger)
         {
             _context = context;
+            _httpClient = httpClient;
+            _mqttService = mqttService;
+            _logger = logger;
+
+            // Set the HttpClient BaseAddress from configuration
+            var aiServiceUrl = configuration["AI:ServiceUrl"] ?? throw new ArgumentNullException("AI:ServiceUrl is not configured");
+            _httpClient.BaseAddress = new Uri(aiServiceUrl);
+            _logger.LogInformation($"HttpClient BaseAddress set to: {_httpClient.BaseAddress}");
         }
 
         [HttpGet]
@@ -35,6 +56,7 @@ namespace FishCareSystem.API.Controllers
                 .ToListAsync();
             return Ok(readings);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSensorReading(int id)
         {
@@ -56,6 +78,7 @@ namespace FishCareSystem.API.Controllers
             }
             return Ok(reading);
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSensorReading(int id)
         {
@@ -69,8 +92,8 @@ namespace FishCareSystem.API.Controllers
             return NoContent();
         }
 
-
         [HttpPost]
+        [Authorize(Roles = "IoT,Manager")]
         public async Task<IActionResult> CreateSensorReading([FromBody] CreateSensorReadingDto createDto)
         {
             var tank = await _context.Tanks.FindAsync(createDto.TankId);
@@ -88,42 +111,47 @@ namespace FishCareSystem.API.Controllers
                 Timestamp = DateTime.UtcNow
             };
 
-            // Simulate AI analysis with simple rules
-            bool isAbnormal = false;
-            string alertMessage = null;
-            string severity = "Warning";
+            // Call AI service (Python FastAPI)
+            var aiRequest = new
+            {
+                temperature = createDto.Type == "Temperature" ? createDto.Value : 0,
+                pH = createDto.Type == "pH" ? createDto.Value : 0,
+                oxygen = createDto.Type == "Oxygen" ? createDto.Value : 0
+            };
 
-            if (createDto.Type == "Temperature" && createDto.Value > 30)
+            _logger.LogInformation($"Calling AI service at: {_httpClient.BaseAddress}/predict with request: {System.Text.Json.JsonSerializer.Serialize(aiRequest)}");
+            try
             {
-                isAbnormal = true;
-                alertMessage = $"High temperature: {createDto.Value}°C";
-                // Simulate AI auto-adjust: Turn on cooler
-                await UpdateDeviceStatus(createDto.TankId, "Cooler", "On");
-            }
-            else if (createDto.Type == "pH" && (createDto.Value < 6.5 || createDto.Value > 8.5))
-            {
-                isAbnormal = true;
-                alertMessage = $"Abnormal pH: {createDto.Value}";
-                severity = "Critical";
-            }
-            else if (createDto.Type == "Oxygen" && createDto.Value < 5)
-            {
-                isAbnormal = true;
-                alertMessage = $"Low oxygen: {createDto.Value} mg/L";
-                // Simulate AI auto-adjust: Turn on aerator
-                await UpdateDeviceStatus(createDto.TankId, "Aerator", "On");
-            }
+                var response = await _httpClient.PostAsJsonAsync("/predict", aiRequest);
+                response.EnsureSuccessStatusCode();
 
-            if (isAbnormal)
-            {
-                var alert = new Alert
+                var aiResult = await response.Content.ReadFromJsonAsync<AIPredictionResponse>();
+                if (aiResult.IsAbnormal)
                 {
-                    TankId = createDto.TankId,
-                    Message = alertMessage,
-                    Severity = severity,
-                    CreatedAt = DateTime.UtcNow
-                };
-                _context.Alerts.Add(alert);
+                    var alert = new Alert
+                    {
+                        TankId = createDto.TankId,
+                        Message = $"Abnormal condition detected: {createDto.Type} = {createDto.Value}{createDto.Unit}",
+                        Severity = "Warning",
+                        CreatedAt = DateTime.UtcNow
+                    };
+                    _context.Alerts.Add(alert);
+
+                    if (aiResult.Action != null)
+                    {
+                        await UpdateDeviceStatus(createDto.TankId, aiResult.Action.Device, aiResult.Action.Status);
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogWarning($"AI service call failed: {ex.Message}");
+                // Continue saving the reading even if AI fails
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Unexpected error during AI call: {ex.Message}");
+                // Continue saving the reading
             }
 
             _context.SensorReadings.Add(reading);
@@ -148,6 +176,9 @@ namespace FishCareSystem.API.Controllers
             {
                 device.Status = status;
                 await _context.SaveChangesAsync();
+
+                // Publish to MQTT for IoT devices
+                await _mqttService.PublishAsync($"fishcare/tank/{tankId}/device/{device.Id}", status);
             }
         }
     }

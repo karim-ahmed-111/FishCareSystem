@@ -6,6 +6,11 @@ using System.Text;
 using FishCareSystem.API.Data;
 using FishCareSystem.API.Models;
 using Microsoft.OpenApi.Models;
+using MQTTnet;
+using MQTTnet.Client;
+using FishCareSystem.API.Controllers;
+using FishCareSystem.API.Services.Interface;
+using FishCareSystem.API.Services.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +50,14 @@ builder.Services.AddAuthentication(options =>
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+// Add HttpClient for AI service
+builder.Services.AddHttpClient<SensorReadingsController>();
+
+// Add MQTT service for IoT
+builder.Services.AddSingleton<IMqttClientService, MqttClientService>();
+
+// Configure SendGrid for email service
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 
 // Add CORS for Flutter mobile app

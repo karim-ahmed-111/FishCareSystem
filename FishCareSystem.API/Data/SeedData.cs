@@ -15,6 +15,10 @@ namespace FishCareSystem.API.Data
             {
                 await roleManager.CreateAsync(new IdentityRole("Manager"));
             }
+            if (!await roleManager.RoleExistsAsync("IoT"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("IoT"));
+            }
 
             // Seed default manager user
             var managerEmail = "manager@fishcare.com";
@@ -29,6 +33,21 @@ namespace FishCareSystem.API.Data
                 };
                 await userManager.CreateAsync(manager, "Manager@123");
                 await userManager.AddToRoleAsync(manager, "Manager");
+            }
+
+            // Seed IoT user
+            var iotEmail = "iot@fishcare.com";
+            if (await userManager.FindByEmailAsync(iotEmail) == null)
+            {
+                var iotUser = new ApplicationUser
+                {
+                    UserName = iotEmail,
+                    Email = iotEmail,
+                    FirstName = "IoT",
+                    LastName = "Device"
+                };
+                await userManager.CreateAsync(iotUser, "IoT@123");
+                await userManager.AddToRoleAsync(iotUser, "IoT");
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using FishCareSystem.API.Data;
 using FishCareSystem.API.DTOs;
 using FishCareSystem.API.Models;
+using FishCareSystem.API.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,16 +14,24 @@ namespace FishCareSystem.API.Controllers
     public class DevicesController : ControllerBase
     {
         private readonly FishCareDbContext _context;
+        private readonly IMqttClientService _mqttService;
 
-        public DevicesController(FishCareDbContext context)
+        public DevicesController(FishCareDbContext context, IMqttClientService mqttService)
         {
             _context = context;
+            _mqttService = mqttService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDevices()
+        public async Task<IActionResult> GetDevices([FromQuery] int? tankId)
         {
-            var devices = await _context.Devices
+            var query = _context.Devices.AsQueryable();
+            if (tankId.HasValue)
+            {
+                query = query.Where(d => d.TankId == tankId.Value);
+            }
+
+            var devices = await query
                 .Select(d => new DeviceDto
                 {
                     Id = d.Id,
@@ -34,6 +43,7 @@ namespace FishCareSystem.API.Controllers
                 .ToListAsync();
             return Ok(devices);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDevice(int id)
         {
@@ -52,6 +62,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreateDevice([FromBody] CreateDeviceDto createDto)
         {
             var tank = await _context.Tanks.FindAsync(createDto.TankId);
@@ -71,6 +82,9 @@ namespace FishCareSystem.API.Controllers
             _context.Devices.Add(device);
             await _context.SaveChangesAsync();
 
+            // Notify IoT device via MQTT
+            await _mqttService.PublishAsync($"fishcare/tank/{device.TankId}/device/{device.Id}", device.Status);
+
             return Ok(new DeviceDto
             {
                 Id = device.Id,
@@ -80,6 +94,26 @@ namespace FishCareSystem.API.Controllers
                 Status = device.Status
             });
         }
+
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> UpdateDevice(int id, [FromBody] UpdateDeviceDto updateDto)
+        {
+            var device = await _context.Devices.FindAsync(id);
+            if (device == null)
+            {
+                return NotFound("Device not found");
+            }
+
+            device.Status = updateDto.Status;
+            await _context.SaveChangesAsync();
+
+            // Notify IoT device via MQTT
+            await _mqttService.PublishAsync($"fishcare/tank/{device.TankId}/device/{device.Id}", device.Status);
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDevice(int id)
         {
@@ -93,19 +127,6 @@ namespace FishCareSystem.API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDevice(int id, [FromBody] UpdateDeviceDto updateDto)
-        {
-            var device = await _context.Devices.FindAsync(id);
-            if (device == null)
-            {
-                return NotFound("Device not found");
-            }
-
-            device.Status = updateDto.Status;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
+        
     }
 }

@@ -21,7 +21,7 @@ namespace FishCareSystem.API.DTOs
         [Required]
         public string LastName { get; set; }
     }
-
+    
     public class LoginDto
     {
         [Required]
@@ -30,11 +30,38 @@ namespace FishCareSystem.API.DTOs
         [Required]
         public string Password { get; set; }
     }
+    public class RefreshTokenDto
+    {
+        [Required]
+        public string AccessToken { get; set; }
 
+        [Required]
+        public string RefreshToken { get; set; }
+    }
     public class AuthResponseDto
     {
         public bool Success { get; set; }
-        public string Token { get; set; }
+        public string AccessToken { get; set; }
+        public string RefreshToken { get; set; }
         public string Message { get; set; }
+    }
+
+
+
+    public class ForgotPasswordDto
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+    }
+
+    public class ResetPasswordDto
+    {
+        [Required]
+        public string Token { get; set; }
+
+        [Required]
+        [MinLength(6)]
+        public string NewPassword { get; set; }
     }
 }
