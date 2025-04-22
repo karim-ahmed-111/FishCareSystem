@@ -9,6 +9,10 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using System;
 using FishCareSystem.API.Data;
+using FishCareSystem.API.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using FishCareSystem.API.Services.Interface;
 
 namespace FishCareSystem.API.Controllers
 {
@@ -20,13 +24,23 @@ namespace FishCareSystem.API.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly FishCareDbContext _context;
+        private readonly IEmailService _emailService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IConfiguration configuration, FishCareDbContext context)
+        public AuthController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IConfiguration configuration,
+            FishCareDbContext context,
+            IEmailService emailService,
+            ILogger<AuthController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _context = context;
+            _emailService = emailService;
+            _logger = logger;
         }
 
         [HttpPost("register")]
@@ -43,6 +57,7 @@ namespace FishCareSystem.API.Controllers
             var result = await _userManager.CreateAsync(user, registerDto.Password);
             if (!result.Succeeded)
             {
+                _logger.LogWarning($"Registration failed for username {registerDto.UserName}: {string.Join(", ", result.Errors.Select(e => e.Description))}");
                 return BadRequest(new AuthResponseDto
                 {
                     Success = false,
@@ -52,6 +67,7 @@ namespace FishCareSystem.API.Controllers
 
             await _userManager.AddToRoleAsync(user, "Manager");
             var (accessToken, refreshToken) = await GenerateTokens(user);
+            _logger.LogInformation($"User registered successfully: {registerDto.UserName}");
             return Ok(new AuthResponseDto
             {
                 Success = true,
@@ -66,6 +82,7 @@ namespace FishCareSystem.API.Controllers
             var user = await _userManager.FindByNameAsync(loginDto.UserName);
             if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password))
             {
+                _logger.LogWarning($"Login failed for username: {loginDto.UserName}");
                 return Unauthorized(new AuthResponseDto
                 {
                     Success = false,
@@ -74,6 +91,7 @@ namespace FishCareSystem.API.Controllers
             }
 
             var (accessToken, refreshToken) = await GenerateTokens(user);
+            _logger.LogInformation($"User logged in successfully: {loginDto.UserName}");
             return Ok(new AuthResponseDto
             {
                 Success = true,
@@ -81,12 +99,14 @@ namespace FishCareSystem.API.Controllers
                 RefreshToken = refreshToken
             });
         }
+
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh([FromBody] RefreshTokenDto refreshDto)
         {
             var principal = GetPrincipalFromExpiredToken(refreshDto.AccessToken);
             if (principal == null)
             {
+                _logger.LogWarning("Invalid access token during token refresh");
                 return BadRequest(new AuthResponseDto
                 {
                     Success = false,
@@ -98,6 +118,7 @@ namespace FishCareSystem.API.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
+                _logger.LogWarning($"User not found for ID: {userId} during token refresh");
                 return BadRequest(new AuthResponseDto
                 {
                     Success = false,
@@ -109,6 +130,7 @@ namespace FishCareSystem.API.Controllers
                 .FirstOrDefault(rt => rt.UserId == userId && rt.Token == refreshDto.RefreshToken && rt.Expires > DateTime.UtcNow);
             if (storedRefreshToken == null)
             {
+                _logger.LogWarning($"Invalid or expired refresh token for user ID: {userId}");
                 return BadRequest(new AuthResponseDto
                 {
                     Success = false,
@@ -123,12 +145,86 @@ namespace FishCareSystem.API.Controllers
             _context.RefreshTokens.Remove(storedRefreshToken);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation($"Token refreshed successfully for user: {user.UserName}");
             return Ok(new AuthResponseDto
             {
                 Success = true,
                 AccessToken = newAccessToken,
                 RefreshToken = newRefreshToken
             });
+        }
+
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarning($"Invalid model state in forgot-password: {System.Text.Json.JsonSerializer.Serialize(ModelState)}");
+                return BadRequest(new AuthResponseDto { Success = false, Message = "Invalid email" });
+            }
+
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if (user == null)
+            {
+                _logger.LogWarning($"Forgot password request for non-existent email: {forgotPasswordDto.Email}");
+                // Don't reveal that the email doesn't exist
+                return Ok(new AuthResponseDto { Success = true, Message = "If the email exists, a reset link has been sent." });
+            }
+
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = Uri.EscapeDataString(resetToken);
+            var resetLink = $"https://yourapp.com/reset-password?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
+            var emailSubject = "FishCare System - Password Reset Request";
+            var emailBody = $@"
+                <h2>Password Reset Request</h2>
+                <p>Hello {user.FirstName} {user.LastName},</p>
+                <p>We received a request to reset your password. Click the link below to reset your password:</p>
+                <p><a href='{resetLink}'>Reset Password</a></p>
+                <p>This link will expire in 24 hours. If you did not request a password reset, please ignore this email.</p>
+                <p>Best regards,<br>FishCare System Team</p>
+            ";
+
+            try
+            {
+                await _emailService.SendEmailAsync(user.Email, emailSubject, emailBody);
+                _logger.LogInformation($"Password reset email sent to: {user.Email}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to send password reset email to {user.Email}: {ex.Message}, StackTrace: {ex.StackTrace}");
+                return StatusCode(500, new AuthResponseDto { Success = false, Message = "Error sending password reset email" });
+            }
+
+            return Ok(new AuthResponseDto { Success = true, Message = "If the email exists, a reset link has been sent." });
+        }
+
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarning($"Invalid model state in reset-password: {System.Text.Json.JsonSerializer.Serialize(ModelState)}");
+                return BadRequest(new AuthResponseDto { Success = false, Message = "Invalid reset data" });
+            }
+
+            var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            if (user == null)
+            {
+                _logger.LogWarning($"Reset password failed: User not found for email {resetPasswordDto.Email}");
+                return BadRequest(new AuthResponseDto { Success = false, Message = "Invalid email or token" });
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
+            if (!result.Succeeded)
+            {
+                _logger.LogWarning($"Reset password failed for user {user.UserName}: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                return BadRequest(new AuthResponseDto { Success = false, Message = string.Join(", ", result.Errors.Select(e => e.Description)) });
+            }
+
+            _logger.LogInformation($"Password reset successfully for user: {user.UserName}");
+            return Ok(new AuthResponseDto { Success = true, Message = "Password reset successfully" });
         }
 
         private async Task<(string AccessToken, string RefreshToken)> GenerateTokens(ApplicationUser user)
@@ -195,25 +291,4 @@ namespace FishCareSystem.API.Controllers
             }
         }
     }
-    //private async Task<string> GenerateJwtToken(ApplicationUser user)
-    //{
-    //    var claims = new[]
-    //    {
-    //        new Claim(ClaimTypes.NameIdentifier, user.Id),
-    //        new Claim(ClaimTypes.Name, user.UserName),
-    //        new Claim(ClaimTypes.Role, "Manager")
-    //    };
-
-    //    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-    //    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-    //    var token = new JwtSecurityToken(
-    //        issuer: _configuration["Jwt:Issuer"],
-    //        audience: _configuration["Jwt:Audience"],
-    //        claims: claims,
-    //        expires: DateTime.Now.AddDays(7),
-    //        signingCredentials: creds);
-
-    //    return new JwtSecurityTokenHandler().WriteToken(token);
-    //}
 }
-
