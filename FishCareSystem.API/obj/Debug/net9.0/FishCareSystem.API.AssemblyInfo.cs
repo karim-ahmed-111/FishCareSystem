@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FishCareSystem.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d15a638f684d06271a537dff0ccf04985d5a5a54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3af048fe06abb952cf4a12e49f79794b45254df9")]
 [assembly: System.Reflection.AssemblyProductAttribute("FishCareSystem.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FishCareSystem.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

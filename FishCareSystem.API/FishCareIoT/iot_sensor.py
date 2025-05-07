@@ -35,7 +35,7 @@ headers = {
 # Simulate dynamic sensor readings (placeholder for hardware sensor)
 def get_sensor_reading():
     # Simulate temperature between 25°C and 35°C
-    temperature = round(random.uniform(30.0, 35.0), 1)
+    temperature = round(random.uniform(25.0, 35.0), 2)
     return {
         "tankId": 1,
         "type": "Temperature",
@@ -59,4 +59,4 @@ while True:
         logger.info("Refreshing authentication token")
         token = get_token()
         headers["Authorization"] = f"Bearer {token}"
-    time.sleep(30)
+    time.sleep(15)

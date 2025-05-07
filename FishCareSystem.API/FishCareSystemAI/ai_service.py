@@ -24,6 +24,9 @@ async def predict(data: dict):
     if data.get('temperature', 0) > model['thresholds']['temperature']:
         IsAbnormal = True
         action = {"device": "Cooler", "status": "On"}
+    elif data.get('temperature', 0) <= model['thresholds']['temperature']:
+        IsAbnormal = True
+        action = {"device": "Cooler", "status": "Off"}
     elif data.get('pH', 0) < model['thresholds']['pH_min'] or data.get('pH', 0) > model['thresholds']['pH_max']:
         IsAbnormal = True
         action = {"device": "pHAdjuster", "status": "On"}

@@ -83,6 +83,7 @@ namespace FishCareSystem.API.Services.Service
                     _context.Alerts.Add(alert);
                     await _context.SaveChangesAsync();
 
+
                     if (aiResult.Action != null)
                     {
                         await UpdateDeviceStatus(createDto.TankId, aiResult.Action.Device, aiResult.Action.Status);
@@ -101,7 +102,7 @@ namespace FishCareSystem.API.Services.Service
 
         private async Task UpdateDeviceStatus(int tankId, string deviceType, string status)
         {
-            
+
             var device = await _context.Devices
                 .FirstOrDefaultAsync(d => d.TankId == tankId && d.Type == deviceType);
             if (device != null)

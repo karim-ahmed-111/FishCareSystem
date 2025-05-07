@@ -58,6 +58,7 @@ builder.Services.AddScoped<SensorReadingService>();
 builder.Services.AddHostedService<SensorReadingMqttService>();
 builder.Services.AddSingleton<IMqttClientService, MqttClientService>();
 
+
 //// Configure SendGrid for email service
 //builder.Services.AddScoped<IEmailService, EmailService>();
 
@@ -70,7 +71,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
+var mqttService = app.Services.GetRequiredService<IMqttClientService>();
+await mqttService.StartAsync();
 // Configure middleware
 if (app.Environment.IsDevelopment())
 {

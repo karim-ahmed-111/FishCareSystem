@@ -3,22 +3,24 @@
   "WorkspaceRootPath": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem\\fishcaresystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem\\fishcaresystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem\\fishcaresystem.api\\services\\service\\sensorreadingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\services\\service\\sensorreadingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem\\fishcaresystem.api\\services\\service\\sensorreadingmqttservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\services\\service\\sensorreadingmqttservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem\\fishcaresystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem\\fishcaresystem.api\\services\\service\\mqttclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|solutionrelative:fishcaresystem.api\\services\\service\\mqttclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/FishCareSystemDB/True/SqlTable/dbo.SensorReadings.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/FishCareSystemDB/True/SqlTable/dbo.Devices.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{486257C9-BAC2-47DA-B928-3BE7A722D9E9}|FishCareSystem.API\\FishCareSystem.API.csproj|d:\\graduation project\\fishcareandmanagementsystem\\fishcaresystem\\fishcaresystem.api\\controllers\\devicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,14 +39,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Program.cs",
-              "RelativeDocumentMoniker": "FishCareSystem.API\\Program.cs",
-              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Program.cs",
-              "RelativeToolTip": "FishCareSystem.API\\Program.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEEAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T13:24:37.272Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\appsettings.json",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\appsettings.json",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\appsettings.json",
+              "RelativeToolTip": "FishCareSystem.API\\appsettings.json",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAxwAcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-07T15:26:43.525Z",
               "EditorCaption": ""
             },
             {
@@ -58,6 +60,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "SensorReadingMqttService.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Services\\Service\\SensorReadingMqttService.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Services\\Service\\SensorReadingMqttService.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Services\\Service\\SensorReadingMqttService.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Services\\Service\\SensorReadingMqttService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAkwB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T13:29:22.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Program.cs",
+              "RelativeDocumentMoniker": "FishCareSystem.API\\Program.cs",
+              "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Program.cs",
+              "RelativeToolTip": "FishCareSystem.API\\Program.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAE4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T13:24:37.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MqttClientService.cs",
               "DocumentMoniker": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Services\\Service\\MqttClientService.cs",
               "RelativeDocumentMoniker": "FishCareSystem.API\\Services\\Service\\MqttClientService.cs",
@@ -65,28 +91,7 @@
               "RelativeToolTip": "FishCareSystem.API\\Services\\Service\\MqttClientService.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAUwFUAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T13:02:05.028Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "dbo.Devices [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/FishCareSystemDB/True/SqlTable/dbo.Devices.sql",
-              "ToolTip": "dbo.Devices [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-05-07T12:47:44.83Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dbo.SensorReadings [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/FishCareSystemDB/True/SqlTable/dbo.SensorReadings.sql",
-              "ToolTip": "dbo.SensorReadings [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-05-07T12:47:13.736Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T13:02:05.028Z"
             },
             {
               "$type": "Document",
@@ -96,7 +101,7 @@
               "RelativeDocumentMoniker": "FishCareSystem.API\\Services\\Service\\SensorReadingService.cs",
               "ToolTip": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\Services\\Service\\SensorReadingService.cs",
               "RelativeToolTip": "FishCareSystem.API\\Services\\Service\\SensorReadingService.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAhwF0AAABMAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAIAywCUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-06T20:22:49.917Z",
               "EditorCaption": ""
@@ -111,8 +116,7 @@
               "RelativeToolTip": "FishCareSystem.API\\Controllers\\DevicesController.cs",
               "ViewState": "AgIAAFwAAAAAAAAAAAAUwAwAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T13:00:53.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T13:00:53.519Z"
             }
           ]
         }

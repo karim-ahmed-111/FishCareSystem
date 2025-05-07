@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "zDq65mN+MfXE4fzLyQnzuIg6HVU4uj4+puVRg0MTWtA=",
+  "Source": "FishCareSystem.API",
+  "BasePath": "_content/FishCareSystem.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
