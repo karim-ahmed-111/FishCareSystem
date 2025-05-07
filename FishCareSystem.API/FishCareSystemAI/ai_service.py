@@ -17,22 +17,22 @@ model = load_model()
 @app.post("/predict")
 async def predict(data: dict):
     # Expect data like {"temperature": 31, "pH": 6.2, "oxygen": 4.8}
-    is_abnormal = False
+    IsAbnormal = False
     action = None
 
     # Placeholder AI logic (replace with model.predict)
     if data.get('temperature', 0) > model['thresholds']['temperature']:
-        is_abnormal = True
+        IsAbnormal = True
         action = {"device": "Cooler", "status": "On"}
     elif data.get('pH', 0) < model['thresholds']['pH_min'] or data.get('pH', 0) > model['thresholds']['pH_max']:
-        is_abnormal = True
+        IsAbnormal = True
         action = {"device": "pHAdjuster", "status": "On"}
     elif data.get('oxygen', 0) < model['thresholds']['oxygen']:
-        is_abnormal = True
+        IsAbnormal = True
         action = {"device": "Aerator", "status": "On"}
 
     return {
-        "is_abnormal": is_abnormal,
+        "IsAbnormal": IsAbnormal,
         "action": action
     }
 

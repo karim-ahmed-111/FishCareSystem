@@ -6,6 +6,9 @@ namespace FishCareSystem.API.Services.Interface
 {
     public interface IMqttClientService
     {
-        Task PublishAsync(string topic, string payload);
+        Task StartAsync();
+        Task StopAsync();
+        Task SubscribeAsync(string topic, Func<string, Task> messageHandler);
+        Task PublishAsync(string topic, string message);
     }
 }

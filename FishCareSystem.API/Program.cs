@@ -11,6 +11,7 @@ using MQTTnet.Client;
 using FishCareSystem.API.Controllers;
 using FishCareSystem.API.Services.Interface;
 using FishCareSystem.API.Services.Service;
+using FishCareSystem.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,13 +52,14 @@ builder.Services.AddAuthentication(options =>
     };
 });
 // Add HttpClient for AI service
-builder.Services.AddHttpClient<SensorReadingsController>();
-
-// Add MQTT service for IoT
+builder.Services.AddHttpClient();
+builder.Services.AddLogging();
+builder.Services.AddScoped<SensorReadingService>();
+builder.Services.AddHostedService<SensorReadingMqttService>();
 builder.Services.AddSingleton<IMqttClientService, MqttClientService>();
 
-// Configure SendGrid for email service
-builder.Services.AddScoped<IEmailService, EmailService>();
+//// Configure SendGrid for email service
+//builder.Services.AddScoped<IEmailService, EmailService>();
 
 
 // Add CORS for Flutter mobile app

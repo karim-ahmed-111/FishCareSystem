@@ -24,7 +24,6 @@ namespace FishCareSystem.API.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly FishCareDbContext _context;
-        private readonly IEmailService _emailService;
         private readonly ILogger<AuthController> _logger;
 
         public AuthController(
@@ -32,14 +31,12 @@ namespace FishCareSystem.API.Controllers
             SignInManager<ApplicationUser> signInManager,
             IConfiguration configuration,
             FishCareDbContext context,
-            IEmailService emailService,
             ILogger<AuthController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _context = context;
-            _emailService = emailService;
             _logger = logger;
         }
 
@@ -154,78 +151,7 @@ namespace FishCareSystem.API.Controllers
             });
         }
 
-        [HttpPost("forgot-password")]
-        [AllowAnonymous]
-        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning($"Invalid model state in forgot-password: {System.Text.Json.JsonSerializer.Serialize(ModelState)}");
-                return BadRequest(new AuthResponseDto { Success = false, Message = "Invalid email" });
-            }
 
-            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
-            if (user == null)
-            {
-                _logger.LogWarning($"Forgot password request for non-existent email: {forgotPasswordDto.Email}");
-                // Don't reveal that the email doesn't exist
-                return Ok(new AuthResponseDto { Success = true, Message = "If the email exists, a reset link has been sent." });
-            }
-
-            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var encodedToken = Uri.EscapeDataString(resetToken);
-            var resetLink = $"https://yourapp.com/reset-password?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
-            var emailSubject = "FishCare System - Password Reset Request";
-            var emailBody = $@"
-                <h2>Password Reset Request</h2>
-                <p>Hello {user.FirstName} {user.LastName},</p>
-                <p>We received a request to reset your password. Click the link below to reset your password:</p>
-                <p><a href='{resetLink}'>Reset Password</a></p>
-                <p>This link will expire in 24 hours. If you did not request a password reset, please ignore this email.</p>
-                <p>Best regards,<br>FishCare System Team</p>
-            ";
-
-            try
-            {
-                await _emailService.SendEmailAsync(user.Email, emailSubject, emailBody);
-                _logger.LogInformation($"Password reset email sent to: {user.Email}");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to send password reset email to {user.Email}: {ex.Message}, StackTrace: {ex.StackTrace}");
-                return StatusCode(500, new AuthResponseDto { Success = false, Message = "Error sending password reset email" });
-            }
-
-            return Ok(new AuthResponseDto { Success = true, Message = "If the email exists, a reset link has been sent." });
-        }
-
-        [HttpPost("reset-password")]
-        [AllowAnonymous]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning($"Invalid model state in reset-password: {System.Text.Json.JsonSerializer.Serialize(ModelState)}");
-                return BadRequest(new AuthResponseDto { Success = false, Message = "Invalid reset data" });
-            }
-
-            var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
-            if (user == null)
-            {
-                _logger.LogWarning($"Reset password failed: User not found for email {resetPasswordDto.Email}");
-                return BadRequest(new AuthResponseDto { Success = false, Message = "Invalid email or token" });
-            }
-
-            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
-            if (!result.Succeeded)
-            {
-                _logger.LogWarning($"Reset password failed for user {user.UserName}: {string.Join(", ", result.Errors.Select(e => e.Description))}");
-                return BadRequest(new AuthResponseDto { Success = false, Message = string.Join(", ", result.Errors.Select(e => e.Description)) });
-            }
-
-            _logger.LogInformation($"Password reset successfully for user: {user.UserName}");
-            return Ok(new AuthResponseDto { Success = true, Message = "Password reset successfully" });
-        }
 
         private async Task<(string AccessToken, string RefreshToken)> GenerateTokens(ApplicationUser user)
         {

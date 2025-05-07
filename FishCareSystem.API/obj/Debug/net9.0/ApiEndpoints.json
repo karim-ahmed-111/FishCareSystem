@@ -59,22 +59,6 @@
   },
   {
     "ContainingType": "FishCareSystem.API.Controllers.AuthController",
-    "Method": "ForgotPassword",
-    "RelativePath": "api/auth/forgot-password",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "forgotPasswordDto",
-        "Type": "FishCareSystem.API.DTOs.ForgotPasswordDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FishCareSystem.API.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/auth/login",
     "HttpMethod": "POST",
@@ -116,22 +100,6 @@
       {
         "Name": "registerDto",
         "Type": "FishCareSystem.API.DTOs.RegisterDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FishCareSystem.API.Controllers.AuthController",
-    "Method": "ResetPassword",
-    "RelativePath": "api/auth/reset-password",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "resetPasswordDto",
-        "Type": "FishCareSystem.API.DTOs.ResetPasswordDto",
         "IsRequired": true
       }
     ],

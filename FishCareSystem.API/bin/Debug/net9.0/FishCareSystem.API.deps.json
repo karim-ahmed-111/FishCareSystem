@@ -8,10 +8,11 @@
     ".NETCoreApp,Version=v9.0": {
       "FishCareSystem.API/1.0.0": {
         "dependencies": {
-          "MQTTnet": "4.3.3.952",
+          "MQTTnet": "4.3.7.1207",
+          "MQTTnet.Extensions.ManagedClient": "4.3.7.1207",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.4",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.4",
-          "Microsoft.AspNetCore.OpenApi": "9.0.2",
+          "Microsoft.AspNetCore.OpenApi": "9.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.4",
           "SendGrid": "9.29.3",
@@ -106,14 +107,14 @@
           }
         }
       },
-      "Microsoft.AspNetCore.OpenApi/9.0.2": {
+      "Microsoft.AspNetCore.OpenApi/9.0.4": {
         "dependencies": {
           "Microsoft.OpenApi": "1.6.23"
         },
         "runtime": {
           "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "assemblyVersion": "9.0.2.0",
-            "fileVersion": "9.0.225.6704"
+            "assemblyVersion": "9.0.4.0",
+            "fileVersion": "9.0.425.16403"
           }
         }
       },
@@ -822,11 +823,22 @@
           }
         }
       },
-      "MQTTnet/4.3.3.952": {
+      "MQTTnet/4.3.7.1207": {
         "runtime": {
           "lib/net7.0/MQTTnet.dll": {
-            "assemblyVersion": "4.3.3.952",
-            "fileVersion": "4.3.3.952"
+            "assemblyVersion": "4.3.7.1207",
+            "fileVersion": "4.3.7.1207"
+          }
+        }
+      },
+      "MQTTnet.Extensions.ManagedClient/4.3.7.1207": {
+        "dependencies": {
+          "MQTTnet": "4.3.7.1207"
+        },
+        "runtime": {
+          "lib/net7.0/MQTTnet.Extensions.ManagedClient.dll": {
+            "assemblyVersion": "4.3.7.1207",
+            "fileVersion": "4.3.7.1207"
           }
         }
       },
@@ -1019,14 +1031,7 @@
           }
         }
       },
-      "System.Formats.Asn1/9.0.4": {
-        "runtime": {
-          "lib/net9.0/System.Formats.Asn1.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.425.16305"
-          }
-        }
-      },
+      "System.Formats.Asn1/9.0.4": {},
       "System.IdentityModel.Tokens.Jwt/8.0.1": {
         "dependencies": {
           "Microsoft.IdentityModel.JsonWebTokens": "8.0.1",
@@ -1124,14 +1129,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
-      "System.Text.Json/9.0.4": {
-        "runtime": {
-          "lib/net9.0/System.Text.Json.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.425.16305"
-          }
-        }
-      },
+      "System.Text.Json/9.0.4": {},
       "System.Threading.Channels/7.0.0": {},
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "System.Windows.Extensions/6.0.0": {
@@ -1210,12 +1208,12 @@
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/9.0.4",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.9.0.4.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.OpenApi/9.0.2": {
+    "Microsoft.AspNetCore.OpenApi/9.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JUndpjRNdG8GvzBLH/J4hen4ehWaPcshtiQ6+sUs1Bcj3a7dOsmWpDloDlpPeMOVSlhHwUJ3Xld0ClZjsFLgFQ==",
-      "path": "microsoft.aspnetcore.openapi/9.0.2",
-      "hashPath": "microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512"
+      "sha512": "sha512-GfZWPbZz1aAtEO3wGCkpeyRc0gzr/+VRHnUgY/YjqVPDlHbeKWCXw3IxKarQdo9myC2O1QBf652Mo50QqbXYRg==",
+      "path": "microsoft.aspnetcore.openapi/9.0.4",
+      "hashPath": "microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
       "type": "package",
@@ -1518,12 +1516,19 @@
       "path": "mono.texttemplating/3.0.0",
       "hashPath": "mono.texttemplating.3.0.0.nupkg.sha512"
     },
-    "MQTTnet/4.3.3.952": {
+    "MQTTnet/4.3.7.1207": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6AFOGkdnqzIfvaPbTnPLYvBibBdGfJlTTWonIZp+VHpRy6fEl+KT9Z1AG1/4AaDAw5TJ0WpqCmrV9TVUWkLffg==",
-      "path": "mqttnet/4.3.3.952",
-      "hashPath": "mqttnet.4.3.3.952.nupkg.sha512"
+      "sha512": "sha512-ah7aHXoedWp5m5a4zy2u4phOEVj0QFYzOb5tFKQeV8RRBrxp+1QREF4ymZuG8D+hzB2dhtrrG81WxTFv0PzOeQ==",
+      "path": "mqttnet/4.3.7.1207",
+      "hashPath": "mqttnet.4.3.7.1207.nupkg.sha512"
+    },
+    "MQTTnet.Extensions.ManagedClient/4.3.7.1207": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i7T+4dsBqy3VVvuDuh9mmTbeZwF7eYP+8rHir4rdriM+k2dGwDNuXrScpz6xI3mEBfJZTVno8zy8+r0zzmFQuQ==",
+      "path": "mqttnet.extensions.managedclient/4.3.7.1207",
+      "hashPath": "mqttnet.extensions.managedclient.4.3.7.1207.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
