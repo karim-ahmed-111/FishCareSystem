@@ -68,4 +68,18 @@ namespace FishCareSystem.API.DTOs
         [MinLength(6)]
         public string NewPassword { get; set; }
     }
+
+    public class UserProfileDto
+    {
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public class UpdateUserProfileDto
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
 }

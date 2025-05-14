@@ -13,6 +13,7 @@ using FishCareSystem.API.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using FishCareSystem.API.Services.Interface;
+using System.Net;
 
 namespace FishCareSystem.API.Controllers
 {
@@ -25,19 +26,22 @@ namespace FishCareSystem.API.Controllers
         private readonly IConfiguration _configuration;
         private readonly FishCareDbContext _context;
         private readonly ILogger<AuthController> _logger;
+        private readonly IEmailService _emailService;
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IConfiguration configuration,
             FishCareDbContext context,
-            ILogger<AuthController> logger)
+            ILogger<AuthController> logger,
+            IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _context = context;
             _logger = logger;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -76,14 +80,22 @@ namespace FishCareSystem.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            var user = await _userManager.FindByNameAsync(loginDto.UserName);
+            ApplicationUser user;
+            if (loginDto.UserName.Contains("@"))
+            {
+                user = await _userManager.FindByEmailAsync(loginDto.UserName);
+            }
+            else
+            {
+                user = await _userManager.FindByNameAsync(loginDto.UserName);
+            }
             if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password))
             {
-                _logger.LogWarning($"Login failed for username: {loginDto.UserName}");
+                _logger.LogWarning($"Login failed for username or email: {loginDto.UserName}");
                 return Unauthorized(new AuthResponseDto
                 {
                     Success = false,
-                    Message = "Invalid username or password"
+                    Message = "Invalid username/email or password"
                 });
             }
 
@@ -151,7 +163,75 @@ namespace FishCareSystem.API.Controllers
             });
         }
 
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                // Do not reveal that the user does not exist
+                return Ok(new { message = "If the email is registered, a reset link has been sent." });
+            }
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var resetUrl = $"https://your-frontend/reset-password?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(dto.Email)}";
+            var subject = "FishCareSystem Password Reset";
+            var body = $"<p>Click <a href='{resetUrl}'>here</a> to reset your password.</p>";
+            await _emailService.SendEmailAsync(dto.Email, subject, body);
+            return Ok(new { message = "If the email is registered, a reset link has been sent." });
+        }
 
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                return BadRequest(new { message = "Invalid request." });
+            }
+            var decodedToken = WebUtility.UrlDecode(dto.Token);
+            var result = await _userManager.ResetPasswordAsync(user, decodedToken, dto.NewPassword);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new { message = string.Join(", ", result.Errors.Select(e => e.Description)) });
+            }
+            return Ok(new { message = "Password has been reset successfully." });
+        }
+
+        [HttpGet("profile")]
+        [Authorize]
+        public async Task<IActionResult> GetProfile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return NotFound();
+
+            return Ok(new UserProfileDto
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            });
+        }
+
+        [HttpPut("profile")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserProfileDto dto)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return NotFound();
+
+            user.FirstName = dto.FirstName;
+            user.LastName = dto.LastName;
+            await _userManager.UpdateAsync(user);
+
+            return Ok(new { message = "Profile updated successfully." });
+        }
 
         private async Task<(string AccessToken, string RefreshToken)> GenerateTokens(ApplicationUser user)
         {

@@ -57,7 +57,7 @@ builder.Services.AddLogging();
 builder.Services.AddScoped<SensorReadingService>();
 builder.Services.AddHostedService<SensorReadingMqttService>();
 builder.Services.AddSingleton<IMqttClientService, MqttClientService>();
-
+builder.Services.AddScoped<IEmailService, SmtpEmailService>();
 
 //// Configure SendGrid for email service
 //builder.Services.AddScoped<IEmailService, EmailService>();
