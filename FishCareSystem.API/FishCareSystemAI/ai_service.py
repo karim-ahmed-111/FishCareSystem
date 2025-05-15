@@ -24,7 +24,7 @@ async def predict(data: dict):
     if data.get('temperature', 0) > model['thresholds']['temperature']:
         IsAbnormal = True
         action = {"device": "Cooler", "status": "On"}
-    elif data.get('temperature', 0) <= model['thresholds']['temperature']:
+    elif data.get('temperature', 0) < model['thresholds']['temperature']:
         IsAbnormal = True
         action = {"device": "Cooler", "status": "Off"}
     elif data.get('pH', 0) < model['thresholds']['pH_min'] or data.get('pH', 0) > model['thresholds']['pH_max']:
@@ -41,4 +41,4 @@ async def predict(data: dict):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)

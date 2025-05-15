@@ -9,7 +9,7 @@ namespace FishCareSystem.API.Controllers
 {
     [ApiController]
     [Route("api/tanks")]
-    [Authorize]
+    [Authorize(Roles = "Manager,IoT,User")]
     public class TanksController : ControllerBase
     {
         private readonly FishCareDbContext _context;

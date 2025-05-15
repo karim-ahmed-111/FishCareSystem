@@ -59,4 +59,4 @@ while True:
         logger.info("Refreshing authentication token")
         token = get_token()
         headers["Authorization"] = f"Bearer {token}"
-    time.sleep(15)
+    time.sleep(30)

@@ -200,7 +200,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpGet("profile")]
-        [Authorize]
+        [Authorize(Roles = "Manager,IoT,User")]
         public async Task<IActionResult> GetProfile()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -218,7 +218,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpPut("profile")]
-        [Authorize]
+        [Authorize(Roles = "Manager,IoT,User")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserProfileDto dto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

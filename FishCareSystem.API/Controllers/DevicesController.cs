@@ -10,7 +10,7 @@ namespace FishCareSystem.API.Controllers
 {
     [ApiController]
     [Route("api/devices")]
-    [Authorize]
+    [Authorize(Roles = "Manager,IoT,User")]
     public class DevicesController : ControllerBase
     {
         private readonly FishCareDbContext _context;
@@ -96,7 +96,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager,User,IoT")]
         public async Task<IActionResult> UpdateDevice(int id, [FromBody] UpdateDeviceDto updateDto)
         {
             var device = await _context.Devices.FindAsync(id);

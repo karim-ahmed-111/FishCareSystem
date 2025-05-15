@@ -14,12 +14,31 @@ using FishCareSystem.API.Services.Service;
 using FishCareSystem.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.WebHost.UseUrls("http://0.0.0.0:5123");
 // Add services
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "FishCare API", Version = "v1" });
+    // Add JWT auth to Swagger
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme. Example: 'Authorization: Bearer {token}'",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement{
+        {
+            new OpenApiSecurityScheme{
+                Reference = new OpenApiReference{
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            }, new List<string>()
+        }
+    });
 });
 
 // Configure DbContext with SQL Server

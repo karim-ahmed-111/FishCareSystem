@@ -15,5 +15,5 @@ def on_message(client, userdata, msg, properties=None):
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect("localhost", 1883)
+client.connect("0.0.0.0", 1883)
 client.loop_forever()

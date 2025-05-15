@@ -13,7 +13,7 @@ namespace FishCareSystem.API.Controllers
 {
     [ApiController]
     [Route("api/sensor-readings")]
-    [Authorize]
+    [Authorize(Roles = "Manager,IoT,User")]
     public class SensorReadingsController : ControllerBase
     {
         private readonly SensorReadingService _sensorReadingService;
@@ -83,7 +83,6 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "IoT,Manager")]
         public async Task<IActionResult> CreateSensorReading([FromBody] CreateSensorReadingDto createDto)
         {
             if (!ModelState.IsValid)

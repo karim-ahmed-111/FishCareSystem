@@ -9,7 +9,7 @@ namespace FishCareSystem.API.Controllers
 {
     [ApiController]
     [Route("api/alerts")]
-    [Authorize]
+    [Authorize(Roles = "Manager,IoT,User")]
     public class AlertsController : ControllerBase
     {
         private readonly FishCareDbContext _context;
@@ -57,7 +57,7 @@ namespace FishCareSystem.API.Controllers
             return Ok(alert);
         }
         [HttpPost]
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager,IoT,User")]
         public async Task<IActionResult> CreateAlert([FromBody] CreateAlertDto createDto)
         {
             var tank = await _context.Tanks.FindAsync(createDto.TankId);
