@@ -78,7 +78,7 @@ namespace FishCareSystem.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+        public async Task<IActionResult> Login( LoginDto loginDto)
         {
             ApplicationUser user;
             if (loginDto.UserName.Contains("@"))

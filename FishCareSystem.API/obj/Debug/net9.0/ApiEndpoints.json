@@ -334,7 +334,23 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "tankId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "sensorType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "hours",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -381,6 +397,94 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.SensorReadingsController",
+    "Method": "GetChartData",
+    "RelativePath": "api/sensor-readings/chart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TankId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SensorType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TimePeriod",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FromDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ToDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.SensorReadingsController",
+    "Method": "GetCurrentSensorReadings",
+    "RelativePath": "api/sensor-readings/current",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tankId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FishCareSystem.API.Controllers.SensorReadingsController",
+    "Method": "GetSensorStatistics",
+    "RelativePath": "api/sensor-readings/statistics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TankId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SensorType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TimePeriod",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FromDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ToDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

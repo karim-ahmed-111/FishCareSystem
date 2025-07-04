@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def get_token():
-    url = "https://localhost:7215/api/auth/login"
+    url = "http://localhost:5123/api/auth/login"
     data = {
         "userName": "iot@fishcare.com",
         "password": "IoT@123"
@@ -26,7 +26,7 @@ def get_token():
 
 # Initialize token
 token = get_token()
-url = "https://localhost:7215/api/sensor-readings"
+url = "http://localhost:5123/api/sensor-readings"
 headers = {
     "Authorization": f"Bearer {token}",
     "Content-Type": "application/json"

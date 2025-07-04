@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aGr6pkqBRm0=",
+  "dgSpecHash": "WL3HmogiBBo=",
   "success": true,
-  "projectFilePath": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\FishCareSystem.API.csproj",
+  "projectFilePath": "D:\\Graduation Project\\FishCareSystem\\FishCareSystem.API\\FishCareSystem.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\karim\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\karim\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

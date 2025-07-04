@@ -14,7 +14,8 @@ using FishCareSystem.API.Services.Service;
 using FishCareSystem.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://0.0.0.0:5123");
+
+builder.WebHost.UseUrls("http://localhost:5123");
 // Add services
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
@@ -97,9 +98,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("AllowAll");
 }
 
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

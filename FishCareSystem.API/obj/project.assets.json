@@ -5267,11 +5267,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\FishCareSystem.API.csproj",
+      "projectUniqueName": "D:\\Graduation Project\\FishCareSystem\\FishCareSystem.API\\FishCareSystem.API.csproj",
       "projectName": "FishCareSystem.API",
-      "projectPath": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\FishCareSystem.API.csproj",
+      "projectPath": "D:\\Graduation Project\\FishCareSystem\\FishCareSystem.API\\FishCareSystem.API.csproj",
       "packagesPath": "C:\\Users\\karim\\.nuget\\packages\\",
-      "outputPath": "D:\\Graduation Project\\FishCareAndManagementSystem\\FishCareSystem\\FishCareSystem.API\\obj\\",
+      "outputPath": "D:\\Graduation Project\\FishCareSystem\\FishCareSystem.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
